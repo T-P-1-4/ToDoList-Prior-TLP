@@ -1,12 +1,9 @@
-# 25s-ad-teamc
-
-
 # ToDo-List Prior (TLP)
 
 **ToDo-List Prior (TLP)** ist eine intelligente ToDo-App mit Fokus auf *automatischer Priorisierung*. Sie richtet sich an alle, die ihre Aufgaben strukturiert, effizient und fokussiert erledigen wollen – ohne sich mühsam durch endlose ToDo-Listen zu klicken.  
 
-**Die .apk-Datei zur direkten Installation liegt im submission folder bereit!**  
-Einfach installieren, loslegen – alle Funktionen sind sofort nutzbar
+**Die .apk-Datei zur direkten Installation liegt hier im Stammverzeichnis bereit!**  
+Einfach installieren, loslegen – alle Funktionen sind sofort nutzbar.
 
 ---
 
@@ -28,13 +25,15 @@ Die App bietet:
 ## Installation & Setup
 
 ### APK-Datei
-Die `TLP_release.apk` befindet sich direkt im submission folder.  
+Die `TLP_release.apk` befindet sich direkt im Stammverzeichnis folder.  
 **Installation auf einem Android-Gerät genügt, um die App in vollem Funktionsumfang zu nutzen**.
 
 ### Projekt selbst clonen?
 Falls du das Projekt clonen und lokal ausführen willst:
 - Ein gültiger **Magenta Cloud Token** ist erforderlich, um QR-basierte Datenübertragung zu nutzen (bspw. für Geräte-Sync).
 - Ohne Token läuft die App, aber die QR-Funktionalität ist **deaktiviert**.
+- Lege dafür eine **magenta_cloud_token** Datei im Unterverzeichnis **src/lib/config/** an und schreibe dein Individuelles Token rein.
+- Lege außerdem eine DB.csv Datei innerhalb deiner Magentacloud an.
 
 ---
 
@@ -42,7 +41,7 @@ Falls du das Projekt clonen und lokal ausführen willst:
 
 Die App folgt dem **MVC-Pattern** (Model-View-Controller), um Wartbarkeit, Erweiterbarkeit und Trennung von Logik und UI sicherzustellen.
 
-![MVC Pattern](Architecture/MVC_Pattern.png)
+![MVC Pattern](architecture/MVC_Pattern.png)
 
 ## Lines of Code (LoC)
 
