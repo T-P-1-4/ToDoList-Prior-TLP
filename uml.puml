@@ -1,0 +1,610 @@
+@startuml
+set namespaceSeparator ::
+
+class "todo_appdev::Controller::colors.dart::AppColorController" {
+  -Map<String, ColorScheme> _colorSchemes
+  -String _currentColor
+  -ColorScheme? _customColor
+  +ColorScheme currentColorScheme
+  +String currentColorKey
+  +List<String> availableSchemes
+  +ColorScheme colorSchemeByKey()
+  +void setColorScheme()
+  +void setCustomColorScheme()
+  +Color? getCustomColor()
+}
+
+"todo_appdev::Controller::colors.dart::AppColorController" o-- "flutter::src::material::color_scheme.dart::ColorScheme"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Controller::colors.dart::AppColorController"
+
+class "todo_appdev::Controller::controller.dart::Controller" {
+  {static} +void sortList()
+  {static} +void addListItem()
+  {static} +void updateListItem()
+  {static} +void setItemChecked()
+  {static} +void setItemUnchecked()
+  {static} +void deleteItem()
+  {static} +ItemList getCheckedList()
+  {static} +ItemList getUncheckedList()
+  {static} +void setAppData()
+  {static} +String getTextLabel()
+  {static} +void selectNavigationItem()
+  {static} +NavigationItem getCurrentNavigationItem()
+  {static} +ListItemController itemList()
+  {static} +void setSelectedPrinciple()
+  {static} +PriorityEnum getCurrentPrincipleEnum()
+  {static} +PriorityEnum getPriorityController()
+  {static} +String getCurrentLanguage()
+  {static} +List<String> getAvailableLanguages()
+  {static} +void setLanguageAtAppStart()
+  {static} +dynamic loadLanguageFile()
+  {static} +dynamic setLanguage()
+  {static} +bool getCurrentNotification()
+  {static} +void setNotificationAtAppStart()
+  {static} +dynamic setNotification()
+  {static} +StatsController getStatsController()
+  {static} +Map<String, int> getWeekdayCompletion()
+  {static} +void setLifetimeStats()
+  {static} +ColorScheme getCurrentColor()
+  {static} +String getCurrentColorScheme()
+  {static} +List<String> getAvailableColorSchemes()
+  {static} +void setColorScheme()
+  {static} +ColorScheme getColorSchemeByKey()
+  {static} +dynamic popMagenta()
+  {static} +dynamic getQrCode()
+  {static} +dynamic pushMagenta()
+  {static} +dynamic initHive()
+  {static} +dynamic readHiveItems()
+  {static} +dynamic writeHiveItems()
+  {static} +dynamic writeHiveItem()
+  {static} +dynamic deleteHiveItem()
+  {static} +dynamic writeHiveColor()
+  {static} +dynamic writeHiveLanguage()
+  {static} +dynamic writeHivePriority()
+  {static} +dynamic writeHiveWSM()
+  {static} +dynamic readHiveColor()
+  {static} +dynamic readHiveLanguage()
+  {static} +dynamic readHivePriority()
+  {static} +dynamic readHiveWSM()
+  {static} +dynamic writeHiveCustomColor()
+  {static} +dynamic readHiveCustomColor()
+  {static} +dynamic readHiveNotification()
+  {static} +dynamic writeHiveNotification()
+  {static} +dynamic writeHiveLifetimeStats()
+  {static} +dynamic readHiveLifetimeStats()
+}
+
+class "todo_appdev::Controller::language.dart::Language" {
+  {static} -String _currentLanguage
+  {static} -Map<String, Map<String, String>> _languageMap
+  {static} +String getCurrentLanguage()
+  {static} +List<String> getAvailableLanguages()
+  {static} +void setLanguage()
+  {static} +dynamic loadLanguageFile()
+  {static} +dynamic getText()
+}
+
+class "todo_appdev::Controller::list_item_controller.dart::ListItemController" {
+  +InputValidation validate
+  +ItemList itemList
+  +InputValidation val
+  +String? validateTitle()
+  +String? validateEffortValue()
+  +String? validateEffortUnit()
+  +String? validateExpirationDate()
+  +String? validateAllInputs()
+  +bool addItem()
+  +void removeItem()
+}
+
+"todo_appdev::Controller::list_item_controller.dart::ListItemController" o-- "todo_appdev::Model::validate_inputs_popup.dart::InputValidation"
+"todo_appdev::Controller::list_item_controller.dart::ListItemController" o-- "todo_appdev::Model::item_list.dart::ItemList"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Controller::list_item_controller.dart::ListItemController"
+
+class "todo_appdev::Controller::navigation_controller.dart::NavigationController" {
+  -NavigationItem _selectedItem
+  +NavigationItem selectedItem
+  +void selectItem()
+}
+
+"todo_appdev::Controller::navigation_controller.dart::NavigationController" o-- "todo_appdev::Model::navigation_item.dart::NavigationItem"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Controller::navigation_controller.dart::NavigationController"
+
+class "todo_appdev::Controller::notification.dart::AppNotification" {
+  {static} -bool _currentNotification
+  {static} -Map<String, Map<String, String>> _NotificationMap
+  {static} +bool getCurrentNotification()
+  {static} +List<String> getAvailableNotifications()
+  {static} +void setNotification()
+}
+
+class "todo_appdev::Controller::principle_controller.dart::PrincipleController" {
+  -PriorityEnum _selected
+  +PriorityEnum selected
+  +void setSelected()
+}
+
+"todo_appdev::Controller::principle_controller.dart::PrincipleController" o-- "todo_appdev::Model::priority_enum.dart::PriorityEnum"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Controller::principle_controller.dart::PrincipleController"
+
+class "todo_appdev::Controller::stats_controller.dart::StatsController" {
+  -StatsModel _model
+  -LifetimeStats _lifetimeStats
+  +StatsModel model
+  +LifetimeStats lifetime
+  +Map<String, int> weekdayCompletion
+  +void load()
+  +void updateLifetimeStats()
+}
+
+"todo_appdev::Controller::stats_controller.dart::StatsController" o-- "todo_appdev::Model::stats_model.dart::StatsModel"
+"todo_appdev::Controller::stats_controller.dart::StatsController" o-- "todo_appdev::Model::lifetime_stats.dart::LifetimeStats"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Controller::stats_controller.dart::StatsController"
+
+class "todo_appdev::main.dart::TodoApp" {
+  +String initialColor
+  +PriorityEnum initialPriority
+  +AppData initialItems
+  +Color? initialCustomColor
+  +LifetimeStats initialLifetimeStats
+  +Widget build()
+}
+
+"todo_appdev::main.dart::TodoApp" o-- "todo_appdev::Model::priority_enum.dart::PriorityEnum"
+"todo_appdev::main.dart::TodoApp" o-- "todo_appdev::Model::app_data.dart::AppData"
+"todo_appdev::main.dart::TodoApp" o-- "dart::ui::Color"
+"todo_appdev::main.dart::TodoApp" o-- "todo_appdev::Model::lifetime_stats.dart::LifetimeStats"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::main.dart::TodoApp"
+
+class "todo_appdev::main.dart::MyAppWrapper" {
+  +State<MyAppWrapper> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::main.dart::MyAppWrapper"
+
+class "todo_appdev::main.dart::_MyAppWrapperState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::main.dart::_MyAppWrapperState"
+
+class "todo_appdev::Model::app_data.dart::AppData" {
+  +ItemList checked
+  +ItemList unchecked
+  +ItemList getCheckedList
+  +ItemList getUncheckedList
+  +void setList()
+  +void addNewItem()
+  +void setItemChecked()
+  +void setItemUnchecked()
+  +void deleteItem()
+}
+
+"todo_appdev::Model::app_data.dart::AppData" o-- "todo_appdev::Model::item_list.dart::ItemList"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Model::app_data.dart::AppData"
+
+class "todo_appdev::Model::crypto.dart::Crypto" {
+  {static} +String createKey()
+  {static} +String encodeValue()
+  {static} +String decodeValue()
+  {static} +String getChecksum()
+}
+
+class "todo_appdev::Model::data_frame.dart::DataFrame" {
+  +List<Map<String, String>> df
+  +void addRow()
+  +void deleteRow()
+  +String getRow()
+  +String toCsv()
+  +void csvToDataFrame()
+}
+
+class "todo_appdev::Model::item_list.dart::ItemList" {
+  +List<ListItem> l
+  +List<ListItem> items
+  +bool add()
+  +ListItem remove()
+  +bool contains()
+  +String dump()
+  +dynamic orderList()
+  +void sortOwnPriority()
+  +void sortEDD()
+  +void sortEisenhowerMatrix()
+  +void sortValueEffort()
+  +void sortDurationDeadline()
+  +dynamic sortWeightedScoringModel()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Model::item_list.dart::ItemList"
+
+class "todo_appdev::Model::lifetime_stats.dart::LifetimeStats" {
+  +int createdCount
+  +int checkedCount
+  +Map<String, dynamic> toJson()
+}
+
+class "todo_appdev::Model::list_item.dart::ListItem" {
+  +String title
+  +String description
+  +int priority
+  +String effort_value
+  +String effort_unit
+  +double duration_time_in_hours
+  +DateTime expiration_date
+  +DateTime checked_date
+  +bool checked
+  +DateTime created_ts
+  +String getTitle
+  +String getDescription
+  +int getPriority
+  +double getDurationTimeInHours
+  +DateTime getExpirationDate
+  +DateTime getCheckedDate
+  +bool isChecked
+  +DateTime getCreatedTimestamp
+  +ListItem getListItemObject
+  +void setChecked()
+  +void setUnchecked()
+  {static} +double toHours()
+  {static} +List<String> hoursToString()
+  {static} +DateTime toDate()
+  +String toString()
+  +String toJsonString()
+  {static} +dynamic getData()
+}
+
+"todo_appdev::Model::list_item.dart::ListItem" o-- "todo_appdev::Model::list_item.dart::ListItem"
+
+class "todo_appdev::Model::model.dart::Model" {
+  {static} +dynamic getQrCode()
+  {static} +dynamic pushMagenta()
+  {static} +dynamic popMagenta()
+  {static} +dynamic initHive()
+  {static} +dynamic readHiveItems()
+  {static} +dynamic writeHiveItems()
+  {static} +dynamic writeHiveItem()
+  {static} +dynamic deleteHiveItem()
+  {static} +dynamic writeHiveColor()
+  {static} +dynamic writeHiveLanguage()
+  {static} +dynamic writeHivePriority()
+  {static} +dynamic writeHiveWSM()
+  {static} +dynamic readHiveColor()
+  {static} +dynamic readHiveLanguage()
+  {static} +dynamic readHivePriority()
+  {static} +dynamic readHiveWSM()
+  {static} +dynamic writeCustomColor()
+  {static} +dynamic readCustomColor()
+  {static} +dynamic readHiveNotification()
+  {static} +dynamic writeHiveNotification()
+  {static} +dynamic writeHiveLifetimeStats()
+  {static} +dynamic readHiveLifetimeStats()
+}
+
+class "todo_appdev::Model::navigation_item.dart::NavigationItem" {
+  +int index
+  {static} +List<NavigationItem> values
+  {static} +NavigationItem mainPage
+  {static} +NavigationItem selectPrinciple
+  {static} +NavigationItem statistics
+  {static} +NavigationItem settings
+  {static} +NavigationItem qrCode
+}
+
+"todo_appdev::Model::navigation_item.dart::NavigationItem" o-- "todo_appdev::Model::navigation_item.dart::NavigationItem"
+"dart::core::Enum" <|-- "todo_appdev::Model::navigation_item.dart::NavigationItem"
+
+class "todo_appdev::Model::priority_enum.dart::PriorityEnum" {
+  +int index
+  {static} +List<PriorityEnum> values
+  {static} +PriorityEnum OwnPriority
+}
+
+"todo_appdev::Model::priority_enum.dart::PriorityEnum" o-- "todo_appdev::Model::priority_enum.dart::PriorityEnum"
+"dart::core::Enum" <|-- "todo_appdev::Model::priority_enum.dart::PriorityEnum"
+
+class "todo_appdev::Model::stats_model.dart::StatsModel" {
+  +ItemList checked
+  +ItemList unchecked
+  +int getTotalTasks()
+  +int getCompletedTasks()
+  +int getMissedDeadlines()
+  +Map<int, int> getPriorityDistribution()
+  +double getAverageDuration()
+  +double getCompletionRate()
+  +Map<String, int> getCompletedByWeekday()
+  +Map<int, Map<String, int>> getDetailedPriorityStats()
+  +int getUncheckedTasks()
+}
+
+"todo_appdev::Model::stats_model.dart::StatsModel" o-- "todo_appdev::Model::item_list.dart::ItemList"
+
+class "todo_appdev::Model::validate_inputs_popup.dart::InputValidation" {
+  +bool title()
+  +int effortValue()
+  +bool effortUnit()
+  +bool expirationDate()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "todo_appdev::Model::validate_inputs_popup.dart::InputValidation"
+
+class "todo_appdev::View::build_itemList_homepage.dart::ListItemTile" {
+  +ListItem listItem
+  +Color colorP
+  +Widget build()
+  -Widget _buildDetailRow()
+}
+
+"todo_appdev::View::build_itemList_homepage.dart::ListItemTile" o-- "todo_appdev::Model::list_item.dart::ListItem"
+"todo_appdev::View::build_itemList_homepage.dart::ListItemTile" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::build_itemList_homepage.dart::ListItemTile"
+
+class "todo_appdev::View::check_item.dart::CheckCircle" {
+  +ListItem listItem
+  +State<CheckCircle> createState()
+}
+
+"todo_appdev::View::check_item.dart::CheckCircle" o-- "todo_appdev::Model::list_item.dart::ListItem"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::check_item.dart::CheckCircle"
+
+class "todo_appdev::View::check_item.dart::_CheckCircleState" {
+  +bool? tempChecked
+  +void handleTap()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::check_item.dart::_CheckCircleState"
+
+class "todo_appdev::View::components::custom_color_dialog.dart::CustomColorDialog" {
+  +State<CustomColorDialog> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::components::custom_color_dialog.dart::CustomColorDialog"
+
+class "todo_appdev::View::components::custom_color_dialog.dart::_CustomColorDialogState" {
+  +HSVColor currentColor
+  +void initState()
+  -void _onPan()
+  -void _submit()
+  +Widget build()
+}
+
+"todo_appdev::View::components::custom_color_dialog.dart::_CustomColorDialogState" o-- "flutter::src::painting::colors.dart::HSVColor"
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::components::custom_color_dialog.dart::_CustomColorDialogState"
+
+class "todo_appdev::View::components::custom_color_dialog.dart::HSVColorWheelPainter" {
+  +HSVColor selected
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"todo_appdev::View::components::custom_color_dialog.dart::HSVColorWheelPainter" o-- "flutter::src::painting::colors.dart::HSVColor"
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "todo_appdev::View::components::custom_color_dialog.dart::HSVColorWheelPainter"
+
+class "todo_appdev::View::components::expandable_header.dart::ExpandableHeader" {
+  +bool isExpanded
+  +void Function() onToggle
+  +String title
+  +Widget build()
+}
+
+"todo_appdev::View::components::expandable_header.dart::ExpandableHeader" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::components::expandable_header.dart::ExpandableHeader"
+
+class "todo_appdev::View::components::logo_widget.dart::ColoredLogo" {
+  +Color color
+  +double size
+  +Widget build()
+}
+
+"todo_appdev::View::components::logo_widget.dart::ColoredLogo" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::components::logo_widget.dart::ColoredLogo"
+
+class "todo_appdev::View::components::qr_modal_sheet.dart::QrModalSheet" {
+  +State<QrModalSheet> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::components::qr_modal_sheet.dart::QrModalSheet"
+
+class "todo_appdev::View::components::qr_modal_sheet.dart::_QrModalSheetState" {
+  +bool isGenerating
+  +bool isScanning
+  +String? scannedData
+  +dynamic qrFuture
+  +void initState()
+  +void generate()
+  +void scan()
+  +void onScan()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::components::qr_modal_sheet.dart::_QrModalSheetState"
+
+class "todo_appdev::View::components::wsm_dialog.dart::WSMDialog" {
+  +State<WSMDialog> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::components::wsm_dialog.dart::WSMDialog"
+
+class "todo_appdev::View::components::wsm_dialog.dart::_WSMDialogState" {
+  +Offset point
+  +List<int> savedWeights
+  +void initState()
+  -void _onPanStart()
+  -void _onPanUpdate()
+  -void _submit()
+  +Widget build()
+}
+
+"todo_appdev::View::components::wsm_dialog.dart::_WSMDialogState" o-- "dart::ui::Offset"
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::components::wsm_dialog.dart::_WSMDialogState"
+
+class "todo_appdev::View::components::wsm_dialog.dart::TrianglePainter" {
+  +List<int> weights
+  +Color color
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"todo_appdev::View::components::wsm_dialog.dart::TrianglePainter" o-- "dart::ui::Color"
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "todo_appdev::View::components::wsm_dialog.dart::TrianglePainter"
+
+class "todo_appdev::View::homepage.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::homepage.dart::HomePage"
+
+class "todo_appdev::View::homepage.dart::_HomePageState" {
+  -bool _tasksIsExpanded
+  -bool _completedIsExpanded
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::homepage.dart::_HomePageState"
+
+class "todo_appdev::View::navigation_view.dart::NavigationView" {
+  +Widget build()
+  -IconData _iconForItem()
+  -String _descriptionForItem()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::navigation_view.dart::NavigationView"
+
+class "todo_appdev::View::popup.dart::PopupView" {
+  +ListItem? itemToEdit
+  {static} +void open()
+  +State<PopupView> createState()
+}
+
+"todo_appdev::View::popup.dart::PopupView" o-- "todo_appdev::Model::list_item.dart::ListItem"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::popup.dart::PopupView"
+
+class "todo_appdev::View::popup.dart::_PopupViewState" {
+  +PageController pageController
+  +ListItem newItem
+  +bool isEditMode
+  +void initState()
+  +void dispose()
+  +void close()
+  +Widget build()
+  -Widget _buildPage1()
+  -Widget _buildPage2()
+  {static} -Widget _buildSlider()
+  {static} -Widget _buildTextField()
+}
+
+"todo_appdev::View::popup.dart::_PopupViewState" o-- "flutter::src::widgets::page_view.dart::PageController"
+"todo_appdev::View::popup.dart::_PopupViewState" o-- "todo_appdev::Model::list_item.dart::ListItem"
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::popup.dart::_PopupViewState"
+
+class "todo_appdev::View::principle_graphics::duration_deadline_widget.dart::DurationDeadlineWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::duration_deadline_widget.dart::DurationDeadlineWidget"
+
+class "todo_appdev::View::principle_graphics::edd_widget.dart::EddWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::edd_widget.dart::EddWidget"
+
+class "todo_appdev::View::principle_graphics::eisenhower_widget.dart::EisenhowerWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::eisenhower_widget.dart::EisenhowerWidget"
+
+class "todo_appdev::View::principle_graphics::own_priority_widget.dart::OwnPriorityWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::own_priority_widget.dart::OwnPriorityWidget"
+
+class "todo_appdev::View::principle_graphics::value_effort_widget.dart::ValueEffortWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::value_effort_widget.dart::ValueEffortWidget"
+
+class "todo_appdev::View::principle_graphics::wsm_widget.dart::WsmWidget" {
+  +List<int> weights
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::principle_graphics::wsm_widget.dart::WsmWidget"
+
+class "todo_appdev::View::principle_view.dart::PrincipleView" {
+  +State<PrincipleView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::principle_view.dart::PrincipleView"
+
+class "todo_appdev::View::principle_view.dart::_PrincipleViewState" {
+  +Widget build()
+  -Widget _buildPrincipleGraphic()
+  -String _buildExplanation()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::principle_view.dart::_PrincipleViewState"
+
+class "todo_appdev::View::QR-Code_view.dart::DummyPage" {
+  +State<DummyPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::QR-Code_view.dart::DummyPage"
+
+class "todo_appdev::View::QR-Code_view.dart::_DummyPageState" {
+  +bool showScanner
+  +String? scannedResult
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::QR-Code_view.dart::_DummyPageState"
+
+class "todo_appdev::View::settings_view.dart::SettingsView" {
+  +State<SettingsView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::settings_view.dart::SettingsView"
+
+class "todo_appdev::View::settings_view.dart::_SettingsViewState" {
+  +String currentLanguage
+  +String currentColorScheme
+  +bool showAllLanguages
+  +bool showAllThemes
+  +bool pushNotificationsEnabled
+  +void initState()
+  -Widget _buildLanguageTile()
+  -Widget _buildColorSquare()
+  -Widget _buildNotificationSwitch()
+  -Widget _buildCustomColorTile()
+  -void _openQrDialog()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::settings_view.dart::_SettingsViewState"
+
+class "todo_appdev::View::statistics_view.dart::StatisticsView" {
+  +State<StatisticsView> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "todo_appdev::View::statistics_view.dart::StatisticsView"
+
+class "todo_appdev::View::statistics_view.dart::_StatisticsViewState" {
+  +Widget build()
+  -Widget _buildInfoCard()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "todo_appdev::View::statistics_view.dart::_StatisticsViewState"
+
+class "todo_appdev::View::view.dart::MainPage" {
+  -Widget _buildContent()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "todo_appdev::View::view.dart::MainPage"
+
+
+@enduml
