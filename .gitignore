@@ -10,40 +10,40 @@
 .history
 .svn/
 .swiftpm/
-migrate_working_dir/
+src/migrate_working_dir/
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
-.idea/
+src/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
+# src/.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/lib/config/magenta_cloud_token
-.devtools_options.yaml
-/project/todo_appdev/devtools_options.yaml
+src/**/doc/api/
+src/**/ios/Flutter/.last_build_id
+src/.dart_tool/
+src/.flutter-plugins
+src/.flutter-plugins-dependencies
+src/.pub-cache/
+src/.pub/
+src/build/
+src/lib/config/magenta_cloud_token
+src/.devtools_options.yaml
+src/project/todo_appdev/devtools_options.yaml
 
 # Symbolication related
-app.*.symbols
+src/app.*.symbols
 
 # Obfuscation related
-app.*.map.json
+src/app.*.map.json
 
 # Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-/devtools_options.yaml
+src/android/app/debug
+src/android/app/profile
+src/android/app/release
+src/devtools_options.yaml
