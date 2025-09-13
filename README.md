@@ -8,7 +8,7 @@
 Einfach installieren, loslegen – alle Funktionen sind sofort nutzbar.
 
 **TLP wurde im Rahmen einer Vorlesung der Hochschule Aalen entwickelt.**  
-Entwicklerteam: Tobias Pöhle, Luzia Weinberger, Paul Frischeisen. 
+Entwicklerteam: [Tobias Pöhle](https://github.com/T-P-1-4/), [Luzia Weinberger](https://github.com/luziaw), [Paul Frischeisen](https://github.com/paulfrischeisen). 
 
 ---
 
@@ -68,7 +68,7 @@ It is designed for everyone who wants to manage tasks in a structured, efficient
 Simply install and start – all features are immediately ready to use.
 
 **TLP was developed as part of a lecture at Aalen University.**  
-Development team: Tobias Pöhle, Luzia Weinberger, Paul Frischeisen. 
+Development team: [Tobias Pöhle](https://github.com/T-P-1-4/), [Luzia Weinberger](https://github.com/luziaw), [Paul Frischeisen](https://github.com/paulfrischeisen). 
 
 ---
 
