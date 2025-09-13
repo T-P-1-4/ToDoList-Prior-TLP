@@ -1,6 +1,6 @@
 ![TLP](src/lib/config/logo_black_background.png)
 
-# ToDo-List Prior (TLP) [English Version](#todo-list-prior-tlp-deutsche-version)
+# ToDo-List Prior (TLP) [Link to english version](#todo-list-prior-tlp-hier-zur-deutschen-version)
 
 **ToDo-List Prior (TLP)** ist eine intelligente ToDo-App mit Fokus auf *automatischer Priorisierung*. Sie richtet sich an alle, die ihre Aufgaben strukturiert, effizient und fokussiert erledigen wollen – ohne sich mühsam durch endlose ToDo-Listen zu klicken.  
 
@@ -59,7 +59,7 @@ Analyse via 'cloc'
 | **SUM:** | 47    | 597   | 246     | 5897 |
 
 
-# ToDo-List Prior (TLP) [Deutsche Version](#todo-list-prior-tlp-english-version)
+# ToDo-List Prior (TLP) [Hier zur deutschen Version](#todo-list-prior-tlp-link-to-english-version)
 
 **ToDo-List Prior (TLP)** is an intelligent ToDo app focused on *automatic prioritization*.  
 It is designed for everyone who wants to manage tasks in a structured, efficient, and focused way – without tediously clicking through endless ToDo lists.  
